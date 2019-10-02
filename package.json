@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "rlacf app express server",
+  "main": "index.js",
+  "repository": "https://github.com/RLACF-App/backend.git",
+  "author": "josh182014 <josh182014@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1",
+    "helmet": "^3.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.3"
+  }
+}
