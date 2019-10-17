@@ -8,7 +8,9 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "lint:start": "eslint --ext .js --ext .jsx .",
+    "lint:fix": "eslint --ext .js --ext .jsx . --fix"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,6 +19,9 @@
     "helmet": "^3.21.1"
   },
   "devDependencies": {
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.19.3"
   }
 }
