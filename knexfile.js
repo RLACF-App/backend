@@ -21,7 +21,7 @@ module.exports = {
       max: 10,
     },
     seeds: {
-      directory: './database/seeds',
+      directory: './api/data/seeds',
     },
     useNullAsDefault: true,
   },

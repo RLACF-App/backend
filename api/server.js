@@ -1,10 +1,10 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
-const restricted = require('./middleware/restricted');
+// const restricted = require('./middleware/restricted');
 
 const volunteerRegister = require('./auth/volunteerRegister');
-const opportunities = require('./resources/Opportunities/index');
+const opportunities = require('./opportunities/opportunities-router');
 
 const server = express();
 
@@ -14,7 +14,7 @@ server.use(cors());
 
 server.use('/api/auth/volunteer', volunteerRegister);
 
-server.use('/opportunities', restricted, opportunities);
+server.use('/api/opportunities', opportunities);
 
 server.get('/', (req, res) => res.send('Server Connected. Welcome to the RLACF Volunteering App'));
 
