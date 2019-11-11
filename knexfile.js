@@ -25,5 +25,14 @@ module.exports = {
     },
     useNullAsDefault: true,
   },
-
+  production: {
+    client: 'pg',
+    connection: dbConnection,
+    migrations: {
+      directory: './api/data/migrations',
+    },
+    seeds: {
+      directory: './api/data/seeds',
+    },
+  },
 };
