@@ -6,6 +6,23 @@ const router = express.Router();
 router.get('/', (req, res) => {
   opportunites.find()
     .then((response) => {
+      if (req.query.length) {
+        const start = req.query.length;
+        const end = parseInt(req.query.length, 10) + 10;
+        res.status(200).json(response.slice(start, end));
+      }
+      else {
+        res.status(200).json(response.slice(0, 10));
+      }
+    })
+    .catch((error) => {
+      res.status(500).json('Server Error');
+    });
+});
+
+router.get('/:id', (req, res) => {
+  opportunites.findById(req.params.id)
+    .then((response) => {
       res.status(200).json(response);
     })
     .catch((error) => {
