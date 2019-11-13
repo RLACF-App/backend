@@ -23,7 +23,11 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   opportunites.findById(req.params.id)
     .then((response) => {
-      res.status(200).json(response);
+      if (response) {
+        res.status(200).json(response);
+      } else {
+        res.status(404).json({ message: 'Opportunity not found.' });
+      }
     })
     .catch((error) => {
       res.status(500).json('Server Error');
