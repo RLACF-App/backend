@@ -34,4 +34,8 @@ router.get('/:id', (req, res) => {
     });
 });
 
+router.post('/form', (req, res) => {
+  res.status(200).json({ message: 'Success' });
+});
+
 module.exports = router;
