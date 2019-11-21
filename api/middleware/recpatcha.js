@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
       if (response.data.success === true) {
         next();
       } else {
-        res.status(500).json({ message: 'Recaptcha Failed' });
+        res.status(422).json({ message: 'Recaptcha Failed' });
       }
     })
     .catch((error) => {
