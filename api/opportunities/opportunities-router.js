@@ -1,5 +1,6 @@
 const express = require('express');
 const opportunites = require('./opportunities-model');
+const checkRecaptcha = require('../middleware/recpatcha');
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/form', (req, res) => {
+router.post('/form', checkRecaptcha, (req, res) => {
   res.status(200).json({ message: 'Success' });
 });
 
