@@ -1,37 +1,42 @@
 const nodemailer = require('nodemailer');
 
 // async..await is not allowed in global scope, must use a wrapper
-const mail = async (userEmail, opportunity) => {
-  // Generate test SMTP service account from ethereal.email
-  // Only needed if you don't have a real mail account for testing
-  const testAccount = await nodemailer.createTestAccount();
-
+const mail = async (firstname, lastname, phone, userEmail, opportunity) => {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
+    host: 'smtp.office365.com',
     port: 587,
-    secure: false, // true for 465, false for other ports
+    tls: {
+      cipher: 'SSLv3',
+      requireTLS: true,
+    },
+    secure: false, // true for 465, false for other ports possibly TODO
     auth: {
-      user: testAccount.user, // generated ethereal user
-      pass: testAccount.pass, // generated ethereal password
+      user: process.env.EMAIL_LOGIN,
+      pass: process.env.EMAIL_PW,
     },
   });
 
   // send mail with defined transport object
-  const info = await transporter.sendMail({
-    from: '"Fred Foo 👻" <foo@example.com>', // sender address
-    to: 'bar@example.com, baz@example.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
+  const toClient = await transporter.sendMail({
+    from: '"Red Lodge Area Community Foundation" <info@rlacf.org>', // sender address
+    to: userEmail, // list of receivers
+    subject: 'RLACF Form Successfully Submitted', // Subject line
     text: 'Hello world?', // plain text body
     html: '<b>Hello world?</b>' // html body
   });
 
-  console.log('Message sent: %s', info.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+  const toHost = await transporter.sendMail({
+    from: '"RLACF Volunteer Form" <info@rlacf.org>', // sender address
+    to: 'info@rlacf.org', // list of receivers
+    subject: 'New Volunteer Form Submission', // Subject line
+    text: 'Hello world?', // plain text body
+    html: '<b>Hello world?</b>' // html body
+  });
 
-  // Preview only available when sending through an Ethereal account
-  console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
-  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+  console.log('Message sent: %s', toClient.messageId);
+  console.log('Message sent: %s', toHost.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 };
 
 module.exports = mail;
