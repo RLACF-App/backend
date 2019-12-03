@@ -2,7 +2,7 @@ const express = require('express');
 const opportunites = require('./opportunities-model');
 const checkRecaptcha = require('../middleware/recpatcha');
 const { userSantitation, validate } = require('../middleware/validate');
-const mail = require('../../mail');
+const mail = require('./mail');
 
 const router = express.Router();
 
