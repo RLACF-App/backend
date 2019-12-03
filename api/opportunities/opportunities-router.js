@@ -1,5 +1,8 @@
 const express = require('express');
 const opportunites = require('./opportunities-model');
+const checkRecaptcha = require('../middleware/recpatcha');
+const { userSantitation, validate } = require('../middleware/validate');
+const mail = require('./mail');
 
 const router = express.Router();
 
@@ -34,8 +37,10 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.post('/form', (req, res) => {
+router.post('/form', checkRecaptcha, userSantitation(), validate, (req, res) => {
+  console.log(req.body);
   res.status(200).json({ message: 'Success' });
+  mail(req.body.firstname, req.body.lastname, req.body.phone, req.body.email, req.body.opportunity);
 });
 
 module.exports = router;
