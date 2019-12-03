@@ -33,10 +33,6 @@ const mail = async (firstname, lastname, phone, userEmail, opportunity) => {
     text: `New Volunteer Form Submited\n\n First Name: ${firstname}\n\nLast Name: ${lastname}\n\nPhone: ${phone}\n\nEmail: ${userEmail}\n\nOpportunity: ${opportunity}`, // plain text body
     html: `New Volunteer Form Submited<br><br> <b>First Name:</b> ${firstname}<br><br><b>Last Name:</b> ${lastname}<br><br><b>Phone:</b> ${phone}<br><br><b>Email:</b> ${userEmail}<br><br><b>Opportunity:</b> ${opportunity}`, // html body
   });
-
-  console.log('Message sent: %s', toClient.messageId);
-  console.log('Message sent: %s', toHost.messageId);
-  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
 };
 
 module.exports = mail;
