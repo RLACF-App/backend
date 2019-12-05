@@ -8,16 +8,23 @@ function findById(id) {
 }
 
 function addFav(favorite) {
-  console.log(favorite)
   return db('volunteer_opportunity')
-    .insert(favorite);
+    .insert(favorite, 'id')
+    .then(([id]) => {
+      return db('volunteer_opportunity')
+        .where({ id })
+        .first();
+    });
 }
 
 function removeFav(volunteerId, oppId) {
   return db('volunteer_opportunity')
     .where({ volunteer_id: volunteerId, opportunity_id: oppId })
-    .first()
-    .delete();
+    .then(([fav]) => {
+      return db('volunteer_opportunity')
+        .where({ id: fav.id })
+        .delete();
+    });
 }
 
 module.exports = {
