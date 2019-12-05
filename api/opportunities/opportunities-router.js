@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
 
   opportunites.find()
     .then((response) => {
+      console.log(req.headers)
       if (req.query.length) {
         const start = req.query.length;
         const end = parseInt(req.query.length, 10) + 10;
