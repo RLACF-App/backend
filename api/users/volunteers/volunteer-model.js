@@ -14,11 +14,18 @@ function getAll(user) {
 
 function findById(id) {
   return db('volunteers')
-    .where({ id })
+    .where({ id });
+}
+
+function findByUsername(username) {
+  return db('volunteers')
+    .where({ username })
+    .first();
 }
 
 module.exports = {
   add,
   getAll,
   findById,
+  findByUsername,
 };

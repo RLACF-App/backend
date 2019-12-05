@@ -7,6 +7,7 @@ const mail = require('./mail');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+
   opportunites.find()
     .then((response) => {
       if (req.query.length) {
