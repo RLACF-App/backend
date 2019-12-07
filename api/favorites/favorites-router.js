@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', (req, res) => {
   favorites.findById(req.authInfo.sub)
     .then((favs) => {
+      console.log(favs)
       res.status(200).json({ favorites: favs });
     });
 });

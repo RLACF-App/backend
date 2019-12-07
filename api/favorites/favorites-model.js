@@ -1,11 +1,11 @@
 const db = require('../data/dbConfig');
 
 
-function findById(id) {
+function findById(userid) {
   return db('volunteer_opportunity')
-    .leftJoin('opportunities as o', 'volunteer_opportunity.opportunity_id', 'o.id')
-    .where({ volunteer_id: id })
-    .select('o.id', 'o.name', 'o.description', 'o.img', 'o.owner')
+    .innerJoin('opportunities as o', 'volunteer_opportunity.opportunity_id', 'o.id')
+    .where({ volunteer_id: userid })
+    // .select('o.id', 'o.name', 'o.description', 'o.img', 'o.owner')
 }
 
 function addFav(favorite) {
