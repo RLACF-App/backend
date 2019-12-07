@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 });
 
 router.post('/addfavorite', (req, res) => {
-  const newFav = { volunteer_id: req.authInfo.sub, opportunity_id: req.body.favId };
+  const newFav = { volunteer_id: req.authInfo.sub, opportunity_id: req.body.id };
   favorites.addFav(newFav)
     .then((fav) => {
       res.status(200).json({ fav });
@@ -22,8 +22,8 @@ router.post('/addfavorite', (req, res) => {
     });
 });
 
-router.delete('/removeFavorite', (req, res) => {
-  favorites.removeFav(req.authInfo.sub, req.body.favId)
+router.delete('/removefavorite/:id', (req, res) => {
+  favorites.removeFav(req.authInfo.sub, req.params.id)
     .then((fav) => {
       res.status(200).json({ fav });
     })
