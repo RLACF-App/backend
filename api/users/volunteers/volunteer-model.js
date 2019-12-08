@@ -14,7 +14,9 @@ function getAll(user) {
 
 function findById(id) {
   return db('volunteers')
-    .where({ id });
+    .where({ id })
+    .first()
+    .select('id');
 }
 
 function findByUsername(username) {
