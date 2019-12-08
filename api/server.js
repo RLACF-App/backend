@@ -7,6 +7,7 @@ const jwtAuthenticate = require('./middleware/jwt-authenticate');
 const volunteerRegister = require('./auth/volunteerRegister');
 const opportunities = require('./opportunities/opportunities-router');
 const favorites = require('./favorites/favorites-router');
+const checkUser = require('./auth/checkuser');
 
 const server = express();
 
@@ -17,6 +18,7 @@ server.use(cors());
 server.use(passport.initialize());
 
 server.use('/api/auth/volunteer', volunteerRegister);
+server.use('/api/secure/checkuser', jwtAuthenticate, checkUser);
 server.use('/api/secure/favorites', jwtAuthenticate, favorites);
 
 server.use('/api/opportunities', opportunities);
