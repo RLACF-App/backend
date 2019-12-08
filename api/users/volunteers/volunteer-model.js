@@ -1,16 +1,12 @@
 const db = require('../../data/dbConfig');
 
-function add(user) {
-  return db('volunteers')
-    .insert(user, 'id')
-    .then(([id]) => db('volunteers')
-      .where({ id })
-      .first());
-}
-
-function getAll(user) {
-  return db('volunteers');
-}
+// function add(user) {
+//   return db('volunteers')
+//     .insert(user, 'id')
+//     .then(([id]) => db('volunteers')
+//       .where({ id })
+//       .first());
+// }
 
 function findById(id) {
   return db('volunteers')
@@ -26,8 +22,6 @@ function findByUsername(username) {
 }
 
 module.exports = {
-  add,
-  getAll,
   findById,
   findByUsername,
 };
