@@ -4,7 +4,8 @@ const volunteers = require('./volunteer-model');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  volunteers.getAll()
+  console.log(req.user)
+  volunteers.findById()
     .then((response) => {
       res.status(200).json(response);
     })
