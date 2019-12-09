@@ -3,6 +3,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const passport = require('passport');
 const jwtAuthenticate = require('./middleware/jwt-authenticate');
+const checkRecaptcha = require('./middleware/recpatcha');
 
 const volunteerRegister = require('./auth/volunteerRegister');
 const opportunities = require('./opportunities/opportunities-router');
@@ -17,7 +18,7 @@ server.use(cors());
 
 server.use(passport.initialize());
 
-server.use('/api/auth/volunteer', volunteerRegister);
+server.use('/api/auth/volunteer', checkRecaptcha, volunteerRegister);
 server.use('/api/secure/checkuser', jwtAuthenticate, checkUser);
 server.use('/api/secure/favorites', jwtAuthenticate, favorites);
 
