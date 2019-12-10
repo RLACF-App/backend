@@ -7,10 +7,10 @@ passport.use(new LocalStrategy(
   (username, password, done) => {
     volunteer.findByUsername(username).then((user) => {
       if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+        return done(null, false, { message: 'Incorrect username or password.' });
       }
       if (!bcrypt.compareSync(password, user.password)) {
-        return done(null, false, { message: 'Incorrect password.' });
+        return done(null, false, { message: 'Incorrect username or password.' });
       }
       return done(null, user);
     })
