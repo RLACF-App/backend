@@ -25,14 +25,33 @@ const userSantitation = () => [
     .escape(),
 ];
 
+const loginSanitation = () => [
+  body('username')
+    .isEmail()
+    .normalizeEmail(),
+  body('password')
+    .isLength({ min: 5 })
+    .escape(),
+];
+const registerSanitation = () => [
+  body('username')
+    .isEmail()
+    .normalizeEmail(),
+  body('password')
+    .isLength({ min: 5 })
+    .escape(),
+  body('confirmPassword')
+    .isLength({ min: 5 })
+    .escape(),
+];
+
 const validate = (req, res, next) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
   if (errors.isEmpty()) {
     return next();
   }
   const extractedErrors = [];
   errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
-  console.log(extractedErrors)
   return res.status(422).json({
     errors: extractedErrors,
   });
@@ -41,4 +60,6 @@ const validate = (req, res, next) => {
 module.exports = {
   validate,
   userSantitation,
+  loginSanitation,
+  registerSanitation,
 };
