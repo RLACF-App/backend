@@ -1,6 +1,6 @@
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs')
 const volunteer = require('../users/volunteers/volunteer-model');
 
 passport.use(new LocalStrategy(
@@ -15,7 +15,7 @@ passport.use(new LocalStrategy(
       return done(null, user);
     })
       .catch((err) => {
-        throw new Error('Validation Failed');
+        console.log(err);
       });
   },
 ));

@@ -18,7 +18,7 @@ router.post('/addfavorite', (req, res) => {
       res.status(200).json({ fav });
     })
     .catch((err) => {
-      throw new Error('Favorite Failed');
+      res.status(500).json({ message: 'Unfavorite Failed' });
     });
 });
 
@@ -28,7 +28,7 @@ router.delete('/removefavorite/:id', (req, res) => {
       res.status(200).json({ fav });
     })
     .catch(() => {
-      throw new Error('Unfavorite Failed');
+      res.status(500).json({ message: 'Unfavorite Failed' });
     });
 });
 
