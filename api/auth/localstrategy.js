@@ -20,6 +20,8 @@ passport.use(new LocalStrategy(
   },
 ));
 
+
+// TODO remove
 passport.serializeUser((user, done) => {
   done(null, user);
 });

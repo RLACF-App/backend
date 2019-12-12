@@ -10,7 +10,7 @@ const jwtOptions = {
 };
 
 passport.use(new JwtStrategy(jwtOptions, (payload, done) => {
-  const volunteer = volunteers.findByUsername(parseInt(payload.sub));
+  const volunteer = volunteers.findById(parseInt(payload.sub, 10));
   if (volunteer) {
     return done(null, volunteer, payload);
   }
