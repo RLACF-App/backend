@@ -16,7 +16,7 @@ router.post('/login', loginSanitation(), validate, passport.authenticate('local'
 router.post('/register', registerSanitation(), validate, (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    res.status(422);
+    return res.status(422);
   }
   const user = { username: req.body.username, password: bcrypt.hashSync(req.body.password, 8) };
   volunteer.add(user)
