@@ -1,11 +1,10 @@
 const express = require('express');
-const passport = require('./localstrategy');
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
+const passport = require('./localstrategy');
 const generateToken = require('../config/generateToken');
 const volunteer = require('../users/volunteers/volunteer-model');
 const { loginSanitation, registerSanitation, validate } = require('../middleware/validate');
-const { check, validationResult } = require('express-validator');
-const checkRecaptcha = require('../middleware/recpatcha');
 
 const router = express.Router();
 
@@ -26,7 +25,7 @@ router.post('/register', registerSanitation(), validate, (req, res) => {
       res.status(200).json({ message: 'login successful', token });
     })
     .catch((error) => {
-      console.log(error);
+      res.status(500).json({ message: 'Server Error' });
     });
 });
 
