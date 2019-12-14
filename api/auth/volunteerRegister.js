@@ -25,7 +25,11 @@ router.post('/register', registerSanitation(), validate, (req, res) => {
       res.status(200).json({ message: 'login successful', token });
     })
     .catch((error) => {
-      res.status(500).json({ message: 'Server Error' });
+      if (error.constraint && error.constraint === 'volunteers_username_unique') {
+        res.status(409).json({ message: 'Email already in use.' });
+      } else {
+        res.status(500).json({ message: 'Server Error' });
+      }
     });
 });
 
