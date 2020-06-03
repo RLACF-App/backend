@@ -44,7 +44,7 @@ exports.seed = (knex) => {
           id: 6,
           name: 'Navigators',
           description: 'Connect low-income individuals and families to the resources they need by becoming a Navigator. You would be responsible for helping them fill out forms and providing assistance navigating the resources available to them. We train all Navigators with all of the information that they need to complete the applications with others who need assistance. You would make a big difference in helping people get connected to services that would improve their lives.',
-          img: 'https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80',
+          img: 'https://rlarcf-app.s3.us-east-2.amazonaws.com/navigators.jpg',
           owner: 1,
         },
         {
@@ -65,7 +65,7 @@ exports.seed = (knex) => {
           id: 9,
           name: 'Special Event Coordinator',
           description: 'Do you like to plan a good party of gathering? If so, we need your help. We host many friend raising events, forums, and presentations in our community. We could use your help in the planning, development and set up. If you like to socialize, this is the volunteer opportunity for you.',
-          img: 'https://images.unsplash.com/photo-1557660559-42497f78035b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2230&q=80',
+          img: 'https://rlarcf-app.s3.us-east-2.amazonaws.com/coordinator.jpg',
           owner: 1,
         },
         {
