@@ -19,8 +19,8 @@ server.use(cors());
 server.use(passport.initialize());
 
 server.use('/api/auth/volunteer', checkRecaptcha, volunteerRegister);
-server.use('/api/secure/checkuser', jwtAuthenticate, checkUser);
-server.use('/api/secure/favorites', jwtAuthenticate, favorites);
+// server.use('/api/secure/checkuser', jwtAuthenticate, checkUser);
+// server.use('/api/secure/favorites', jwtAuthenticate, favorites);
 
 server.use('/api/opportunities', opportunities);
 

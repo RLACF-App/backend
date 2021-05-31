@@ -40,5 +40,6 @@ module.exports = {
       directory: './api/data/seeds',
     },
     useNullAsDefault: true,
+    ssl: true,
   },
 };

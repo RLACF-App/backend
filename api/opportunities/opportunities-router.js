@@ -7,7 +7,6 @@ const mail = require('./mail');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-
   opportunites.find()
     .then((response) => {
       if (req.query.length) {
@@ -20,7 +19,7 @@ router.get('/', (req, res) => {
       }
     })
     .catch((error) => {
-      res.status(500).json('Server Error');
+      res.status(500).json({ message: 'Server Error', error });
     });
 });
 
